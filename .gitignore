@@ -1,0 +1,17 @@
+# Runtime logs / crash dumps
+*.log
+*.dmp
+CrashContext.runtime-xml
+CrashReportClient.ini
+
+# Game files
+Aperion-Win64-Shipping.exe
+*.pak
+*.utoc
+*.ucas
+
+# Local development scratch
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
