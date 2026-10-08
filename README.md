@@ -89,6 +89,21 @@ Test: open overlay with **F1**, select **Method C once**, then share `GodfallEnh
 
 See [H27 technical notes](docs/H27_UNLOCK_AUDIT_F1.md). H23 remains the official base on `main`.
 
+## H28 - Targeted Acquisition Path Audit (F1)
+
+H27 successfully listed 90 candidate native classes, 360 functions and 116 properties. The high global function limit, however, was consumed by inventory and loot functions before `APLocalPlayer` functions could be examined.
+
+**H28** restricts reflection to specific game classes, prioritizing player acquisition, cosmetic ownership and loot management, and reports parameter metadata without calling mutating functions.
+
+- [Download H28 development ZIP](releases/H28/GodfallEnhanced_V0.6H28_ACQUISITION_AUDIT_F1_TEST.zip)
+- [H28 investigation notes](docs/H28_ACQUISITION_PATH_AUDIT.md)
+- F1 overlay preserved; H25 Methods A/B unchanged.
+- Method C: read-only targeted audit, `H28_UNLOCK_AUDIT_END` in the log.
+- Files at ZIP root; binaries identical to H27, including the F1 ASI patch.
+- This is **not yet Unlock Gratitude or Unlock All**.
+
+The most relevant H27 finding was `APLootManagerComponent::NotifyPlayerAcquiredLootWithoutRequest` with a `bPersistToAccount` parameter. No unverified account reward or server call has been made. The next step is to inspect the player's ownership state, not assume this function grants skins.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
