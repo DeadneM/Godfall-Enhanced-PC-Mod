@@ -62,6 +62,20 @@ H25 avoids saving transient UObject pointers across asynchronous commands. It st
 
 Unlike H24, the H25 ZIP has files directly at the archive root, ready to extract into the game executable folder.
 
+## H26 - Unlock discovery TEST (read-only)
+
+**H26 is not yet an Unlock Gratitude/Unlock All feature.** It adds targeted diagnostics to determine what makes a catalogued cosmetic selectable in the native Godfall UI.
+
+- **Method C** in the existing F11 overlay runs a read-only metadata audit after its original material dump.
+- Logs capped `H26_CLASS`, `H26_FUNCTION`, `H26_PROPERTY` entries for cosmetics, inventory, rewards, entitlements, SourceData and local player.
+- No mutating gameplay calls or broad tracing hooks. Method A and Method B are kept from H25.
+- Existing H23 `dxgi.dll` / `GodfallEnhanced.asi` remain unchanged.
+- The ZIP contains files at its root, ready to extract directly into the game directory.
+
+[Download H26 test ZIP](releases/H26/GodfallEnhanced_V0.6H26_UNLOCK_AUDIT_TEST.zip) · [H26 usage and safeguards](docs/H26_UNLOCK_DISCOVERY_TEST.md).
+
+Send the new `GodfallEnhancedBridge.log` after running Method C once. The next step is to use actual reflected names from the user's game to test a **single cosmetic's local unlock** before building Unlock Gratitude and Unlock All.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
