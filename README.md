@@ -35,6 +35,21 @@ The H23 validation log reported all four direct `SetMaterial` calls as successfu
 H23_APPLY_OK changed=4 target=Character.Player.Hinterclaw.MacrosCosmetic
 ```
 
+## H24 test candidate (not yet validated)
+
+**V0.6H24 - Verified Material Equip TEST** is staged on the development branch `dev/h24-safe-material-restore`. H23 remains the validated canonical base on `main`.
+
+- H24 keeps the exact H23 `dxgi.dll` and `GodfallEnhanced.asi` from the validated H23 archive.
+- Applies all four Macros materials with immediate `GetMaterial` readback checks.
+- Repeated Method A cannot overwrite the first original material snapshot.
+- Failed application attempts rollback and retains recovery state if rollback is incomplete.
+- Method B verifies all four restored slots before discarding recovery state.
+- An optional `GodfallEnhanced.ini` controls verbose verification logging only.
+
+Download the development ZIP: [GodfallEnhanced_V0.6H24_VerifiedMaterialEquip_TEST.zip](releases/H24/GodfallEnhanced_V0.6H24_VerifiedMaterialEquip_TEST.zip).
+
+See [H24 test plan](docs/H24_TEST_PLAN.md) for step-by-step in-game checks.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
