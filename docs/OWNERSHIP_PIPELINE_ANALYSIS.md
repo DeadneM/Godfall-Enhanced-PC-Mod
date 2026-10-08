@@ -16,6 +16,14 @@
 - `APLocalPlayer` exposes `OnLootAcquireHandle` as a reflected property, but the actual handler and its relation to cosmetic ownership are not yet established.
 - H27 log contains **no Method A or B test**; it only runs Method C. Their retained code must not be confused with H27 runtime validation.
 
+## Confirmed project correction: MacrosCosmetic is Gratitude Pack content
+
+The user has confirmed from direct game knowledge that `Character.Player.Hinterclaw.MacrosCosmetic` is a **Gratitude Pack** skin. Therefore the visually successful H23–H25 application proves that an actual Gratitude cosmetic's cooked Blueprint and four Macros materials work on the user's PC installation. Earlier notes implying MacrosCosmetic might be unrelated to Gratitude were incorrect.
+
+This is a content/visual validation, **not** proof of native cosmetic ownership or unlock. Its precise official display-name mapping within the Gratitude Pack is not yet documented by a verified in-game string.
+
+**Target for first local-native unlock experiment:** the already identified `Character.Player.Hinterclaw.MacrosCosmetic`, not an arbitrarily selected new hidden skin. Compare its locked/hidden visibility against a selectable Hinterclaw cosmetic in the vanilla UI, then inspect the ownership/availability query. The acceptance test requires MacrosCosmetic to appear and be equippable from the vanilla cosmetics menu; a material-only swap is insufficient. Retain rollback and confirm behavior after UI refresh and game restart.
+
 ## What we can and cannot infer
 
 Three distinct layers should be separated:
@@ -54,7 +62,7 @@ Do **not** issue another broad class-dump build immediately.
 
 1. Complete H28 targeted signatures and inspect **APLocalPlayer**, cosmetic function library and session/login handling before any mutation.
 2. Identify the cosmetics-screen query path: the function that selects which rows from `cosmetics/collection` can be shown/selected.
-3. Compare **one known-unlocked ordinary skin vs one known-locked local skin** under the same Valorplate, first in read-only mode. Track whether the relevant state is player/session/cache rather than inventory.
+3. Compare **one known-unlocked Hinterclaw skin vs the Gratitude Pack skin `Character.Player.Hinterclaw.MacrosCosmetic`** under the same Valorplate, first in read-only mode. Track whether the relevant state is player/session/cache rather than inventory.
 4. Try one reversible local-only unlock **only after** identifying the ownership state, refresh path, and safe rollback. Verify *actual appearance in the vanilla cosmetics list* and ability to equip there, before/after menu refresh and game restart.
 5. Only after a successful single-cosmetic proof, map exactly the 12 official Gratitude skins to internal tags, then add `Unlock Gratitude`; generalize to `Unlock All` only when ownership semantics are understood.
 6. Preserve F1 keybinding, H25 A/B functionality, no broad hooks, and ZIP-root packaging.
