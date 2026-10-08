@@ -76,6 +76,19 @@ Unlike H24, the H25 ZIP has files directly at the archive root, ready to extract
 
 Send the new `GodfallEnhancedBridge.log` after running Method C once. The next step is to use actual reflected names from the user's game to test a **single cosmetic's local unlock** before building Unlock Gratitude and Unlock All.
 
+## H27 - Native Unlock Audit + F1 hotkey (TEST)
+
+**Current test candidate:** [Download H27 root-level ZIP](releases/H27/GodfallEnhanced_V0.6H27_UNLOCK_AUDIT_F1_TEST.zip).
+
+- **F1** toggles the overlay instead of F11. The original H23 ASI key check was patched from `VK_F11=0x7A` to `VK_F1=0x70`; exactly one byte changed. The `dxgi.dll` loader is unchanged.
+- **Method C** now performs a broader, prioritized **read-only** reflection scan of Aperion ownership, cosmetics, inventory, progression, and player classes. It lists relevant function/property names and bounded parameter metadata.
+- **Methods A/B** retain H25 apply/restore behavior; this is still only a visual material equip and not an actual unlock.
+- **ZIP root layout:** `dxgi.dll`, `GodfallEnhanced.asi`, `GodfallEnhanced.ini`, `README.txt`, and `ue4ss/...` are immediately inside the archive.
+
+Test: open overlay with **F1**, select **Method C once**, then share `GodfallEnhancedBridge.log` ending in `H27_UNLOCK_AUDIT_END`. The native cosmetic unlock ownership mechanism remains to be identified; **Unlock Gratitude and Unlock All are not implemented yet**. H27 has not been validated in game.
+
+See [H27 technical notes](docs/H27_UNLOCK_AUDIT_F1.md). H23 remains the official base on `main`.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
