@@ -50,6 +50,18 @@ Download the development ZIP: [GodfallEnhanced_V0.6H24_VerifiedMaterialEquip_TES
 
 See [H24 test plan](docs/H24_TEST_PLAN.md) for step-by-step in-game checks.
 
+## H25 crash-safe restoration test (not validated)
+
+**H25** is the next development candidate after H24. A user confirmed H24 Method A equipped MacrosCosmetic, but Method B caused an access violation while trying to restore original materials. The original snapshot contained two transient `MaterialInstanceDynamic` objects.
+
+H25 avoids saving transient UObject pointers across asynchronous commands. It stores restorable asset descriptors; for transient materials, it uses the stable parent material as a fallback. Method B preflights all four assets before any `SetMaterial` call and refuses safely if any needed asset cannot be resolved.
+
+**Caveat:** restoring a parent asset may not preserve runtime MID parameter overrides. Exact vanilla restoration still needs validation. This is a crash-recovery candidate, not a complete cosmetics menu.
+
+[Download H25 test ZIP](releases/H25/GodfallEnhanced_V0.6H25_SAFE_RESTORE_TEST.zip) · [H25 test plan](docs/H25_TEST_PLAN.md)
+
+Unlike H24, the H25 ZIP has files directly at the archive root, ready to extract into the game executable folder.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
