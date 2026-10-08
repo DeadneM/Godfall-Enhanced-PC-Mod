@@ -471,7 +471,7 @@ local function unlock_audit()
             if not n:find("^Class /Script/Aperion%.") or already[n] then return end
             local low = n:lower()
             -- Eliminate the input/gameplay action wrappers that swamped H26.
-            if low:find("%.apaction_",1,true) or low:find("%.apactionrules_",1,true) then return end
+            if low:find(".apaction_",1,true) or low:find(".apactionrules_",1,true) then return end
             local group = nil
             for _,rule in ipairs(rules) do
                 for _,tok in ipairs(rule.tokens) do
