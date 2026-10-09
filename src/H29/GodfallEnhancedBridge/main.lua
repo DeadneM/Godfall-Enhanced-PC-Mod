@@ -619,7 +619,7 @@ local function process_command(command)
         unlock_audit()
         return
     end
-    if op == "UNLOCK_AUDIT" or op == "AUDIT_UNLOCK" then unlock_audit(); return end
+    if op == "UNLOCK_UI_AUDIT" or op == "UNLOCK_AUDIT" or op == "AUDIT_UNLOCK" then unlock_audit(); return end
     if op == "PING" then log("PONG H29"); return end
     log("H23_UNKNOWN_COMMAND " .. op)
 end
