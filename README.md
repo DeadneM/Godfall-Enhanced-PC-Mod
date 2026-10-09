@@ -145,6 +145,16 @@ This development build addresses H29's incomplete two-snapshot workflow. The lat
 - Tests have verified ZIP structure, CRC and binary preservation, **not yet in-game operation**. Scans of 245k+ objects may briefly affect frame pacing.
 - The known Gratitude skin `Character.Player.Hinterclaw.MacrosCosmetic` is still only proven by material swaps; native menu unlock, Unlock Gratitude and Unlock All remain unverified.
 
+## H31 native UI/cosmetic skin catalog focus (unvalidated test)
+
+The H30 user log confirms **six automatic snapshots** and a real object-load transition: **355 added** and later **349 removed**. Eight Hinterclaw skin Blueprint classes were observed in memory: Black, Damascus, Exalted, Ice, Lava, Red, Void and Yellow. The log has no proof that these cosmetics are owned, nor that MacrosCosmetic is absent from all content. See [H30 log evidence](docs/H30_RUNTIME_LOG_ANALYSIS.md).
+
+**H31** fixes H30's alphabetic 45-entry logging truncation. It captures `UserWidget`, `WBP_` and cosmetic-menu class candidates, ranks them above combat widgets and logs up to 160 candidates plus dedicated widget/skin class events. H25 A/B and the F1 overlay binaries remain unchanged. Watch frequency is ~12 seconds, capped at 12 samples.
+
+[Download H31 test ZIP](releases/H31/GodfallEnhanced_V0.6H31_NATIVE_UI_CATALOG_F1_TEST.zip) | [H31 technical notes](docs/H31_NATIVE_UI_CATALOG_FOCUS.md)
+
+**Test**: outside the native Hinterclaw skin menu press F1 then C once, open the actual cosmetics screen for ~30–45 seconds, exit it, and send `GodfallEnhancedBridge.log` before restarting. Do not use A during this diagnostic. No native unlock, entitlement spoofing, network grant or save edit is included.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
