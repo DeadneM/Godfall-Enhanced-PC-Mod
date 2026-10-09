@@ -130,6 +130,21 @@ H28 successfully completed its targeted audit of the player's functions, includi
 - ZIP layout at root.
 - H29 has **not yet been validated in game**, and it does **not** unlock Gratitude or all cosmetics.
 
+## H30 - One-click automatic cosmetics UI monitoring (TEST)
+
+This development build addresses H29's incomplete two-snapshot workflow. The latest H29 log showed only `H29_UI_AUDIT_END snapshot=1`, so no before/after menu comparison was obtained.
+
+**Download:** [H30 test ZIP](releases/H30/GodfallEnhanced_V0.6H30_COSMETICS_AUTO_WATCH_F1_TEST.zip) | [full notes](docs/H30_AUTO_COSMETICS_UI_WATCH.md).
+
+- F1 overlay and H25 Method A/B preserved; ASI and DXGI binaries are unchanged from H29.
+- One press on **Method C** outside the original Hinterclaw cosmetics screen takes a baseline and arms the watcher.
+- The watcher automatically performs read-only scans about every **12 seconds**, stopping after **20 scans** (roughly four minutes). No second C click.
+- Open the vanilla cosmetics screen, leave it open **30-45 seconds** and send `GodfallEnhancedBridge.log` before game restart.
+- Expected markers: `H30_UI_WATCH_ARMED`, `H30_UI_BASELINE_SAVED`, `H30_UI_DIFF`, `H30_UI_SCAN_END`.
+- `UNLOCK_UI_AUDIT` in the bridge command file also arms the watcher; `STOP_UI_WATCH` ends it.
+- Tests have verified ZIP structure, CRC and binary preservation, **not yet in-game operation**. Scans of 245k+ objects may briefly affect frame pacing.
+- The known Gratitude skin `Character.Player.Hinterclaw.MacrosCosmetic` is still only proven by material swaps; native menu unlock, Unlock Gratitude and Unlock All remain unverified.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
