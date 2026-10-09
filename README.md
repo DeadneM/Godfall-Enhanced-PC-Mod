@@ -104,6 +104,17 @@ H27 successfully listed 90 candidate native classes, 360 functions and 116 prope
 
 The most relevant H27 finding was `APLootManagerComponent::NotifyPlayerAcquiredLootWithoutRequest` with a `bPersistToAccount` parameter. No unverified account reward or server call has been made. The next step is to inspect the player's ownership state, not assume this function grants skins.
 
+### H29 game test, 2026-10-09
+
+**First run succeeded, but the test is incomplete:** [runtime log analysis](docs/H29_RUNTIME_LOG_ANALYSIS.md).
+
+- `METHOD_A`: `H25_APPLY_OK changed=4 verified=4` for Gratitude `Character.Player.Hinterclaw.MacrosCosmetic`.
+- `METHOD_C`: `H29_UI_AUDIT_END snapshot=1 objects=91 classes_inspected=14 functions=38 properties=9 mutated=0`.
+- The reflected Sanctuary alcove `BP_ValorplateAlcove` has a `CosmeticTagToPlayerSkin` map and `SetValorplateCosmetic` function. This likely concerns appearance/alcove mapping and **does not yet prove ownership**.
+- **Missing:** `snapshot=2` and `H29_UI_DIFF`, so the in-game cosmetics menu has not yet been compared to the baseline.
+- Next step: run Method C once *outside* the native Hinterclaw skin menu, then once *inside* it **in the same session**, before sending the log. No need to download a different build.
+- No native cosmetic unlock has been validated.
+
 ## H29 - Native Cosmetics Menu UI Trace (TEST)
 
 H28 successfully completed its targeted audit of the player's functions, including `GetActiveEntitlements`, `GetAvailableEntitlements`, `GetPlayerSessionData`, `OnLootAcquired`, and `FetchPlayerData`. It did **not** find a verified native function that unlocks individual cosmetic skins. `UnlockAllValorplates` is *not* an Unlock All Cosmetics function. See [H29 investigation](docs/H29_COSMETIC_UI_TRACE.md).
