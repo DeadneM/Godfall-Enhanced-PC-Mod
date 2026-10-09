@@ -155,6 +155,19 @@ The H30 user log confirms **six automatic snapshots** and a real object-load tra
 
 **Test**: outside the native Hinterclaw skin menu press F1 then C once, open the actual cosmetics screen for ~30–45 seconds, exit it, and send `GodfallEnhancedBridge.log` before restarting. Do not use A during this diagnostic. No native unlock, entitlement spoofing, network grant or save edit is included.
 
+## H32 - Coherent GT frontend probe (TEST)
+
+[Download H32 ZIP](releases/H32/GodfallEnhanced_V0.6H32_COHERENT_GT_FRONTEND_F1_TEST.zip) | [H31 actual runtime evidence](docs/H31_RUNTIME_LOG_ANALYSIS.md) | [H32 technical notes](docs/H32_COHERENT_FRONTEND_PROBE.md)
+
+H31 completed five read-only snapshots; its live object-diff revealed `WBP_GT_Test_C`, `CoherentUIGTWidget_Persistent_90` and `CoherentUIGTAudioWrapper`, all attached to a live `BP_GameInstance_C`. This establishes use of a **Coherent UI GT component**, *not* that the native cosmetics screen uses it. H31 selected >42,000 widget-tree objects and did not identify MacrosCosmetic ownership or live menu eligibility.
+
+**H32** narrows the watcher to Coherent GT, `WBP_GT_Test`, `WBP_Menu_Game` and cosmetics-related UI class/instance names. Method C once outside the skin menu starts read-only automatic snapshots every ~12 s for at most 10 samples. Open the vanilla Hinterclaw skin screen for 30–45 s, then send the log before restarting. H32 emits `H32_PROBE_COUNTS`, `H32_PROBE_DIFF` and bounded `H32_CLASS_META` signatures.
+
+- Retains F1 overlay and H25 visual material A/B methods unchanged; binary dxgi/ASI preserved.
+- Bounded metadata only, no JS execution, UI hooks, save, inventory or entitlement modification.
+- ZIP built and structurally verified; **game test still pending**.
+- `Character.Player.Hinterclaw.MacrosCosmetic` is confirmed Gratitude content; the native unlock is **not yet implemented**.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
