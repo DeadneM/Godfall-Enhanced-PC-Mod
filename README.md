@@ -168,6 +168,18 @@ H31 completed five read-only snapshots; its live object-diff revealed `WBP_GT_Te
 - ZIP built and structurally verified; **game test still pending**.
 - `Character.Player.Hinterclaw.MacrosCosmetic` is confirmed Gratitude content; the native unlock is **not yet implemented**.
 
+## H33 - Coherent GT runtime property values (TEST, not a cosmetic unlock)
+
+The [H32 in-game log analysis](docs/H32_RUNTIME_LOG_ANALYSIS.md) confirms seven successful snapshots and a live `WBP_GT_Test_C` / `CoherentUIGTWidget_Persistent_90`, plus transient JS-event and JS-payload objects. Native Coherent metadata exposed `URL`, `CoUIResourcesRoot` and `EventName`, but H32 did **not** read their values.
+
+**H33** adds guarded *read-only* property-value inspection for those three string fields. It logs event **names only**, redacts full URLs/absolute paths and does not read payload contents, execute JavaScript, hook views, or edit account/save/entitlement/inventory state. The scan is still bounded to 10 samples roughly 12 seconds apart.
+
+[Download H33 cumulative test ZIP](releases/H33/GodfallEnhanced_V0.6H33_COHERENT_RUNTIME_VALUES_F1_TEST.zip) | [H33 instructions](docs/H33_COHERENT_RUNTIME_VALUES.md)
+
+Installation: files are at archive root. Outside the normal Hinterclaw skins screen, press F1 then C **once**, enter that screen for about 30–45 seconds, and send `GodfallEnhancedBridge.log` before restarting. Markers include `H33_VALUE_SUMMARY`, `H33_VALUE`, `H33_TARGET_PROPERTY`, and `H32_PROBE_DIFF`.
+
+F1 overlay, H25 Macros visual A/B methods, and ASI/DXGI binaries are unchanged. The ZIP's structure and CRC have been checked; **runtime H33 verification is still pending**. Neither `Unlock Gratitude` nor `Unlock All` exists yet.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
