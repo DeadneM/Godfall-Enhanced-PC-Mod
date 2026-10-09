@@ -104,6 +104,21 @@ H27 successfully listed 90 candidate native classes, 360 functions and 116 prope
 
 The most relevant H27 finding was `APLootManagerComponent::NotifyPlayerAcquiredLootWithoutRequest` with a `bPersistToAccount` parameter. No unverified account reward or server call has been made. The next step is to inspect the player's ownership state, not assume this function grants skins.
 
+## H29 - Native Cosmetics Menu UI Trace (TEST)
+
+H28 successfully completed its targeted audit of the player's functions, including `GetActiveEntitlements`, `GetAvailableEntitlements`, `GetPlayerSessionData`, `OnLootAcquired`, and `FetchPlayerData`. It did **not** find a verified native function that unlocks individual cosmetic skins. `UnlockAllValorplates` is *not* an Unlock All Cosmetics function. See [H29 investigation](docs/H29_COSMETIC_UI_TRACE.md).
+
+**H29 changes the strategy** from generic native API dumps to an on-demand **before/after snapshot of the native cosmetics selection UI**. This aims to identify its widget/Blueprint classes and availability filtering.
+
+[Download H29 test ZIP](releases/H29/GodfallEnhanced_V0.6H29_COSMETICS_UI_TRACE_F1_TEST.zip)
+
+- F1 overlay preserved.
+- Method A/B retain the H25 MacrosCosmetic application/restoration.
+- Method C (or `UNLOCK_UI_AUDIT`) captures the current UI object snapshot. Run it once in Sanctum **before** entering the vanilla cosmetics screen, then again while that screen is open. The log will contain `H29_UI_DIFF` and `H29_UI_AUDIT_END`.
+- No hooks, gameplay mutation, network/account entitlement spoofing or save editing.
+- ZIP layout at root.
+- H29 has **not yet been validated in game**, and it does **not** unlock Gratitude or all cosmetics.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
