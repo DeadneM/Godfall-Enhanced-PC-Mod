@@ -180,6 +180,18 @@ Installation: files are at archive root. Outside the normal Hinterclaw skins scr
 
 F1 overlay, H25 Macros visual A/B methods, and ASI/DXGI binaries are unchanged. The ZIP's structure and CRC have been checked; **runtime H33 verification is still pending**. Neither `Unlock Gratitude` nor `Unlock All` exists yet.
 
+## H34 React route/CDO probe (test, read-only)
+
+[Download cumulative H34 test ZIP](releases/H34/GodfallEnhanced_V0.6H34_REACT_ROUTE_CDO_F1_TEST.zip) · [H33 runtime findings](docs/H33_RUNTIME_LOG_ANALYSIS.md) · [H34 technical notes](docs/H34_REACT_ROUTE_CDO_PROBE.md)
+
+The H33 user log completed six clean read-only snapshots. It showed a live `UE_DATABRIDGE` Coherent JS event name and an HTTP-scheme Coherent URL (deliberately redacted). Crucially, `WBP_Menu_Game_C` exposes two `StrProperty` fields: `ReactSettingsURL` and `ReactCharacterSelectURL`. H33 did not read their values, so it cannot yet tell us whether these pages have anything to do with the native cosmetics selector.
+
+**H34** tries guarded read-only `UClass:GetCDO()` / `GetPropertyValue()` on exactly those two React fields and `CoherentUIGTSettings.CoUIResourcesRoot`, while reporting only safe URL scheme/route-leaf information (not full URLs, user paths or accounts). It retains the Coherent event **name-only** diagnosis. No JS payload/arguments, interface invocation, account entitlement, inventory or save changes are performed.
+
+A single **F1 → C** starts a baseline and at most four more ~12-second snapshots. Open the vanilla Hinterclaw cosmetics screen during the test and send `GodfallEnhancedBridge.log` before restarting. New markers: `H34_CDO_ROUTE` / `H34_CDO_FIELD_UNAVAILABLE` / `H33_VALUE field=URL_ROUTE`.
+
+F1 overlay, H25 material A/B, ASI and DXGI binaries are preserved; ZIP root and CRC have been verified. **H34 is a game-test candidate, not an implemented Unlock Gratitude / Unlock All.**
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
