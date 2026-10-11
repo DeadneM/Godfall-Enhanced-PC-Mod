@@ -218,6 +218,12 @@ The user ran the H35 offline locator successfully. It identified **23 packaged I
 
 **Next milestone:** inspect *package paths* using FModel and export only a focused `WBP_Menu_Game` / character-select / cosmetic metadata subset if accessible. The H34 non-loopback HTTP Coherent view remains a separate hypothesis: the bundled archives are not yet proven to contain the React UI. [Exact results and method](docs/H35_RUNTIME_RESULT_AND_FMODEL_NEXT.md).
 
+### H35 FModel exports received
+
+User-provided exports of `WBP_Menu_Game` (227 JSON objects) and `BP_Hinterclaw_MacrosCosmetic` (28 exported objects) were parsed. The **exact** menu CDO values are `ReactSettingsURL=esc-menu/settings` and `ReactCharacterSelectURL=character-select`. Generated Unreal function metadata references `DataBridgeOutgoingRequest` and JSON promise data, but does not expose request payloads or a cosmetic ownership check. The Macros Blueprint confirms the `Character.Player.Hinterclaw.MacrosCosmetic` GameplayTag and four mesh materials only.
+
+**Next targeted input:** FModel JSON export of `BP_ValorplateAlcove`, because earlier runtime evidence found `CosmeticTagToPlayerSkin` there. No H36 build is justified solely from these two exports. [Complete evidence and follow-up](docs/H35_FMODEL_EXPORTED_ASSET_ANALYSIS.md).
+
 **Unlock status:** `MacrosCosmetic` is still visually applied only; `Unlock Gratitude` / `Unlock All` are not implemented.
 
 ## Installation
