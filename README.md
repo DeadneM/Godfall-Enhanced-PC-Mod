@@ -192,6 +192,14 @@ A single **F1 → C** starts a baseline and at most four more ~12-second snapsho
 
 F1 overlay, H25 material A/B, ASI and DXGI binaries are preserved; ZIP root and CRC have been verified. **H34 is a game-test candidate, not an implemented Unlock Gratitude / Unlock All.**
 
+## H34 in-game result – 2026-10-11
+
+**Diagnostic validated in game; no cosmetic unlock.** In the supplied `GodfallEnhancedBridge(7).log`, the correct H34 Lua bridge ran and four read-only snapshots completed without fatal errors. The `WBP_Menu_Game_C` **class-default values** were captured: `ReactSettingsURL = settings` and `ReactCharacterSelectURL = character-select`. The `UE_DATABRIDGE` event name recurred. The Coherent view also reported a non-loopback HTTP URL category, but no raw hostname/path was recorded. These values **do not yet identify** a cosmetic ownership filter.
+
+[Detailed H34 runtime analysis](docs/H34_RUNTIME_LOG_ANALYSIS.md).
+
+**Decision:** no further generic UObject audits. Before building H35, locate/inspect the game's actual React/frontend resources or the relevant cooked menu Blueprint and bridge calls to find the skin eligibility lookup for `cosmetics/collection`. The repo does not contain the original React asset bundle. H23 remains the validated visual proof of concept; H34 is now a runtime-verified **diagnostic**, not a native unlock.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
