@@ -210,7 +210,13 @@ To break the H26–H34 cycle of general UObject scans, H35 adds a **separate off
 
 **Test:** close Godfall, extract all ZIP contents beside `Aperion-Win64-Shipping.exe`, double-click **`Run_GodfallFrontendLocator.cmd`**, then send the generated `GodfallFrontendAssetsReport.txt` in the chat. The CMD uses a temporary process-level PowerShell execution-policy bypass (no permanent settings changes); inspect the included `.ps1` source if desired. No need to retest F1 → C just for H35.
 
-H35 preserves the **H34 Lua behavior**, existing A/B H25 materials, F1 overlay, and the unchanged ASI/DXGI binaries. Only the boot marker is updated to `H35_BOOT_MARKER=OK`. The ZIP structure and CRCs were checked; **the new locator has not yet been run on the user's Windows install**.
+H35 preserves the **H34 Lua behavior**, existing A/B H25 materials, F1 overlay, and the unchanged ASI/DXGI binaries. Only the boot marker is updated to `H35_BOOT_MARKER=OK`. The ZIP structure and CRCs were checked; **the locator has now run successfully on the user's Windows installation** (see confirmed result below).
+
+### H35 confirmed result (2026-10-11)
+
+The user ran the H35 offline locator successfully. It identified **23 packaged IoStore-related files** (`global.ucas/.utoc` and `pakchunk0..6` each with `.pak/.utoc/.ucas`) and **zero loose frontend assets or text files**. No game data were modified; no React/Coherent frontend code was extracted.
+
+**Next milestone:** inspect *package paths* using FModel and export only a focused `WBP_Menu_Game` / character-select / cosmetic metadata subset if accessible. The H34 non-loopback HTTP Coherent view remains a separate hypothesis: the bundled archives are not yet proven to contain the React UI. [Exact results and method](docs/H35_RUNTIME_RESULT_AND_FMODEL_NEXT.md).
 
 **Unlock status:** `MacrosCosmetic` is still visually applied only; `Unlock Gratitude` / `Unlock All` are not implemented.
 
