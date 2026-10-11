@@ -226,6 +226,16 @@ User-provided exports of `WBP_Menu_Game` (227 JSON objects) and `BP_Hinterclaw_M
 
 **Unlock status:** `MacrosCosmetic` is still visually applied only; `Unlock Gratitude` / `Unlock All` are not implemented.
 
+## H36: live Valorplate Alcove cosmetic map (EXPERIMENTAL)
+
+**[Download H36 ZIP](releases/H36/GodfallEnhanced_V0.6H36_ALCOVE_MAP_READONLY_F1_TEST.zip)** · [FModel findings / method / safety](docs/H36_ALCOVE_MAP_AUDIT.md)
+
+The user's focused FModel JSON export of `BP_ValorplateAlcove` (44 records, 37 functions) confirms an **editable `CosmeticTagToPlayerSkin` MapProperty** of `GameplayTag → SoftClass<BP_Player>`, plus the `SetValorplateCosmetic` Blueprint event signature. The class default object contains **no map values**, so we cannot infer the mapping for the placed Sanctum alcoves.
+
+**H36 specifically answers that question.** Method **F1 → C** now performs a one-shot, read-only `FindAllOf("BP_ValorplateAlcove_C")` and guarded `TMap:ForEach` on any live instances, logging counts and only relevant Hinterclaw/Macros/Gratitude tags. No `SetValorplateCosmetic` calls, entitlement changes or saved-state mutations. **Do this only after entering the Sanctum and completing all loading.** Return `GodfallEnhancedBridge.log` before restarting.
+
+The existing H25 A/B visual method, F1 overlay, H34 Coherent watcher (manual `COHERENT_PROBE` command), H35 offline frontend locator, `GodfallEnhanced.asi` and `dxgi.dll` are preserved. Archive layout and CRCs checked, binaries and H35 locator byte-identical. **Not yet tested in game.** It is still a diagnostics-only mod, **not** an unlocker.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
