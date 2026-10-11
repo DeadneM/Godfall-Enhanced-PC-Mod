@@ -200,6 +200,20 @@ F1 overlay, H25 material A/B, ASI and DXGI binaries are preserved; ZIP root and 
 
 **Decision:** no further generic UObject audits. Before building H35, locate/inspect the game's actual React/frontend resources or the relevant cooked menu Blueprint and bridge calls to find the skin eligibility lookup for `cosmetics/collection`. The repo does not contain the original React asset bundle. H23 remains the validated visual proof of concept; H34 is now a runtime-verified **diagnostic**, not a native unlock.
 
+## H35: offline frontend resource discovery (EXPERIMENTAL)
+
+**Download:** [Godfall Enhanced V0.6H35 complete ZIP](releases/H35/GodfallEnhanced_V0.6H35_OFFLINE_FRONTEND_LOCATOR.zip) | [Technical plan and limitations](docs/H35_OFFLINE_FRONTEND_LOCATOR.md)
+
+H34 was tested successfully: the `WBP_Menu_Game_C` CDO exposed **ReactSettingsURL = settings** and **ReactCharacterSelectURL = character-select**, while `UE_DATABRIDGE` appeared as a Coherent UI GT event name. That does **not** demonstrate the original cosmetics menu's entitlement/ownership gate.
+
+To break the H26–H34 cycle of general UObject scans, H35 adds a **separate offline, local-only resource locator**. It inventories the installation's package names and likely loose frontend/React files, and searches small frontend text files for known marker **names only**. It writes `GodfallFrontendAssetsReport.txt` using relative game-installation paths, never uploading anything automatically or reading saves, backend data, JavaScript payloads or credentials.
+
+**Test:** close Godfall, extract all ZIP contents beside `Aperion-Win64-Shipping.exe`, double-click **`Run_GodfallFrontendLocator.cmd`**, then send the generated `GodfallFrontendAssetsReport.txt` in the chat. The CMD uses a temporary process-level PowerShell execution-policy bypass (no permanent settings changes); inspect the included `.ps1` source if desired. No need to retest F1 → C just for H35.
+
+H35 preserves the **H34 Lua behavior**, existing A/B H25 materials, F1 overlay, and the unchanged ASI/DXGI binaries. Only the boot marker is updated to `H35_BOOT_MARKER=OK`. The ZIP structure and CRCs were checked; **the new locator has not yet been run on the user's Windows install**.
+
+**Unlock status:** `MacrosCosmetic` is still visually applied only; `Unlock Gratitude` / `Unlock All` are not implemented.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
