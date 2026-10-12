@@ -23,7 +23,7 @@
   - Silvermane: 16
   - Taurus: 10
   - Typhoon: 11
-- Hinderc law [sic: **Hinterclaw**] alcove actor **#3** `BP_VPAlcove_Hinterclaw` listed precisely nine gameplay tags:
+- **Hinterclaw** alcove actor **#3** `BP_VPAlcove_Hinterclaw` listed precisely nine gameplay tags:
   1. `Character.Player.Hinterclaw.Black`
   2. `Character.Player.Hinterclaw.Yellow`
   3. `Character.Player.Hinterclaw.Ice`
