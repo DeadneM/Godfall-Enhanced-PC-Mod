@@ -242,6 +242,18 @@ The existing H25 A/B visual method, F1 overlay, H34 Coherent watcher (manual `CO
 
 This is a promising *presentation mapping difference*, but there is no proof that `CosmeticTagToPlayerSkin` controls the original owned-skins menu. No unsafe `TMap:Add` or `SetValorplateCosmetic` experiment has been done. Next: trace the specific map consumer/Blueprint graph before any runtime mutation. [Detailed H36 log findings](docs/H36_RUNTIME_RESULT.md).
 
+## H37: multi-probe after H36 (experimental)
+
+**[Download H37 cumulative ZIP](releases/H37/GodfallEnhanced_V0.6H37_ALCOVE_SOFTCLASS_UI_MULTIPROBE_F1_TEST.zip)** | [Detailed H37 test plan and limits](docs/H37_MULTI_PROBE_PLAN.md)
+
+Following the successful H36 Sanctum map read (12 alcoves, 126 actor mappings, 9 Hinterclaw entries, **no MacrosCosmetic key**), H37 bundles three **different targeted read-only probes**, rather than another general UObject scan:
+
+- **SoftClass decoding:** tests guarded getter paths on the nine class references H36 could not decode (`H37_SOFTCLASS`).
+- **Actual actor class metadata:** enumerates only filtered reflected function/property names for the loaded Hinterclaw alcove (`H37_CLASS_AUDIT_END`).
+- **Vanilla menu comparison:** `F1 → C` the **first time** in a loaded Sanctum performs the grouped map probe and UI baseline; after opening the *original* Hinterclaw cosmetics screen, a **second** `F1 → C` records the UI widget presence again (`H37_UI_SNAPSHOT_END sample=1/2`), avoiding a second alcove-map scan.
+
+No `TMap:Add/Remove`, `SetValorplateCosmetic`, saved-state changes, entitlement or server calls are made. H25 visual A/B, H34 Coherent watcher manual command, H35 offline locator, F1 overlay and **unchanged ASI/DXGI binaries** remain in the ZIP. The archive structure and CRCs were checked, but **H37 has not yet run on the user's PC**. No native cosmetic unlock has been demonstrated.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
