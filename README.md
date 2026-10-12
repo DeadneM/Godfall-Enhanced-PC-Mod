@@ -236,6 +236,12 @@ The user's focused FModel JSON export of `BP_ValorplateAlcove` (44 records, 37 f
 
 The existing H25 A/B visual method, F1 overlay, H34 Coherent watcher (manual `COHERENT_PROBE` command), H35 offline frontend locator, `GodfallEnhanced.asi` and `dxgi.dll` are preserved. Archive layout and CRCs checked, binaries and H35 locator byte-identical. **Not yet tested in game.** It is still a diagnostics-only mod, **not** an unlocker.
 
+### H36 user runtime evidence – 2026-10-12
+
+**H36 was successfully tested in the user's Sanctum** (`H36_BOOT_MARKER=OK`; `METHOD_C`). All 12 placed `BP_ValorplateAlcove_C` actors had readable maps, totaling **126 entries**; the **Hinterclaw** alcove held exactly **9** entries: Black, Yellow, Ice, Void, Damascus, Red, Pearl, Lava, and Exalted. **The locally shipped `Character.Player.Hinterclaw.MacrosCosmetic` was absent from this particular alcove map.** The 9 soft-class values were still not decoded (`SOFTCLASS_UNRESOLVED`). `H36_ALCOVE_AUDIT_END ... mutated=0`.
+
+This is a promising *presentation mapping difference*, but there is no proof that `CosmeticTagToPlayerSkin` controls the original owned-skins menu. No unsafe `TMap:Add` or `SetValorplateCosmetic` experiment has been done. Next: trace the specific map consumer/Blueprint graph before any runtime mutation. [Detailed H36 log findings](docs/H36_RUNTIME_RESULT.md).
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
