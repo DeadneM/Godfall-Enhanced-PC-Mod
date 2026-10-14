@@ -320,6 +320,16 @@ The user's follow-up H40 test on an armor with owned skins finally recorded real
 
 The install-ready ZIP retains F1, H25 A/B visual apply/restore, H35 offline locator and byte-for-byte original `GodfallEnhanced.asi` and `dxgi.dll`. All 13 ZIP entries and stored CRCs were checked; **H41 still needs in-game user testing**. Its existence is **not** evidence of a native `MacrosCosmetic` unlock.
 
+## Current research: how Godfall's ORIGINAL cosmetics menu works
+
+**[Source-backed UI pipeline map, known vs unknown edges](docs/VANILLA_COSMETICS_MENU_SOURCE_MAP.md)**
+
+After H43 and H45 native reflection crashes, the development objective has shifted to **offline source-based reconstruction**. This research branch starts from the previously tested **H41** code, not H45's unsafe experimental native calls, and does not ship a new in-game mod. Confirmed pieces: local `cosmetics/collection` 163 entries; hidden Macros class/assets; Coherent/React `WBP_GT_Test` host; `WBP_GT_Base:OnDataBridgeIncomingRequest`; H40's actual bridge type names; and a vanilla skin equip changing loadout JSON. Unknown: where owned/unlocked state filters the list and the exact UI equip request/handler.
+
+The **next source targets are cooked Blueprint Kismet code** (`WBP_GT_Base`, `WBP_GT_Settings`, `WBP_Menu_Game`, `BP_GameInstance`) and the Coherent frontend module for `character-select` if present. Basic FModel property JSON cannot show function control flow. Recent FModel versions report Blueprint decompilation support, and standalone KismetKompiler documents offline `-v 4.27` decompilation. No need to restart Godfall, run F1/C hooks, edit inventory or change account entitlements.
+
+**H25 visual Macros is not native ownership.** The project considers success only when `Character.Player.Hinterclaw.MacrosCosmetic` appears and can be selected in the original UI.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
