@@ -254,6 +254,16 @@ Following the successful H36 Sanctum map read (12 alcoves, 126 actor mappings, 9
 
 No `TMap:Add/Remove`, `SetValorplateCosmetic`, saved-state changes, entitlement or server calls are made. H25 visual A/B, H34 Coherent watcher manual command, H35 offline locator, F1 overlay and **unchanged ASI/DXGI binaries** remain in the ZIP. The archive structure and CRCs were checked, but **H37 has not yet run on the user's PC**. No native cosmetic unlock has been demonstrated.
 
+## H38: Live Coherent GT widget, targeted test (experimental)
+
+**[H38 cumulative ZIP](releases/H38/GodfallEnhanced_V0.6H38_GT_COHERENT_WIDGET_F1_TEST.zip)** · [H38 technical notes](docs/H38_GT_WIDGET_COHERENT_PROBE.md) · [H37 actual user runtime evidence](docs/H37_RUNTIME_RESULT.md)
+
+The user's H37 log completed two sequential UI snapshots. **`WBP_GT_Test_C` was absent in the Sanctum baseline and present with the original Hinterclaw cosmetics screen open**, while `WBP_Menu_Game_C` remained absent in both. All nine Hinterclaw alcove-map value paths still reported `TSoftObjectPtrUserdata path=UNRESOLVED`. This is evidence that a Coherent/GT frontend host *loads in association with the original cosmetics view*, **not** proof of the skin ownership filter.
+
+**H38 F1 → C** performs a narrow read-only check of that active `WBP_GT_Test_C`: selected class function/property names and types, and carefully sanitized Coherent view URL categories and parent relationships. The first C press, before opening original skins, is the baseline; the second, after opening the skin selector, reads the active widget. The prior 12-alcove scan remains accessible by a manual `ALCOVE_MAP_AUDIT` command but is no longer triggered by C.
+
+The archive retains the H25 A/B material controls, F1, H35 offline locator and byte-identical `GodfallEnhanced.asi`/`dxgi.dll`. ZIP entries and CRCs were checked. **H38 has not yet been tested in game**. No `TMap` mutations, JS event injections, saves or server/account entitlement changes.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
