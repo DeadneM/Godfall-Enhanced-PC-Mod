@@ -310,6 +310,16 @@ The received 16-line user log confirms `H40_BOOT_MARKER=OK`; first C was too ear
 
 **Next step:** determine if the game crashed after the second C. If so, roll back to H39 and do not repeat the hook test. If not, capture a complete manual start/stop test and supply the resulting log before the next restart. Do not broaden the hook scope or build H41 without this evidence. [Full H40 runtime result and source audit](docs/H40_RUNTIME_RESULT.md).
 
+## H41: single-hook DataBridge timeline (experimental)
+
+**[Download cumulative H41 ZIP](releases/H41/GodfallEnhanced_V0.6H41_SINGLE_DATABRIDGE_EVENT_TRACE_F1_TEST.zip)** · [H41 test details](docs/H41_SINGLE_HOOK_EVENT_TRACE.md) · [H40 second user log findings](docs/H40_RUNTIME_RESULT_SECOND_TEST.md)
+
+The user's follow-up H40 test on an armor with owned skins finally recorded real UI→Unreal DataBridge **Type** events, including `UE_ROUTE_UI`, `UE4_SHOW_LOADOUT_VISUAL_REQUEST`, `UE4_HIDE_LOADOUT_VISUAL_REQUEST`, `UE4_SHOW_LOADOUT_WEAPON_VISUAL_REQUEST`, `UE4_PLAY_AUDIO_CUE` and `UE4_PLAY_MUSIC`. The first monitoring window reached **48 hits** and ended with **`unregistered=2 errors=0`**. It registered a second window before the 4,234-byte log ended, so that later cleanup is unconfirmed. The two BASE/SETTINGS streams are nearly identical and appear to consume the event cap too quickly.
+
+**H41**, available only on experimental branch `dev/h41-single-hook-event-summary`, now arms **one** proven UFunction (`WBP_GT_Base_C:OnDataBridgeIncomingRequest`) only with F1 → C while the original skin menu is open. It captures up to **160 callbacks or 90 seconds**, logs the sanitized event order, and summarizes counts by Type on stop. No request Payload/Promise or account/save state is touched, and no original Unreal return value is overridden. The startup status message correctly says hooks are **optional on C** instead of falsely stating no hooks.
+
+The install-ready ZIP retains F1, H25 A/B visual apply/restore, H35 offline locator and byte-for-byte original `GodfallEnhanced.asi` and `dxgi.dll`. All 13 ZIP entries and stored CRCs were checked; **H41 still needs in-game user testing**. Its existence is **not** evidence of a native `MacrosCosmetic` unlock.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
