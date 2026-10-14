@@ -282,6 +282,14 @@ The targeted child exposes only generic Coherent GUI support: `Load`, `Reload`, 
 
 **Decision:** Stop the H29–H39 class-reflection lineage; H40 is **not** justified as another reflection build. Next target: user’s **FModel JSON export of `WBP_GT_Test`** or actual discovered frontend JS/UI resources, to find the real original-menu cosmetics query. Do **not** modify the `BP_ValorplateAlcove` map or account entitlements merely because it omits the local `MacrosCosmetic` tag. [Detailed H39 in-game analysis](docs/H39_RUNTIME_RESULT.md).
 
+### H39 FModel follow-up: WBP_GT_Test asset export analyzed (2026-10-14)
+
+The user provided a complete FModel JSON export of `WBP_GT_Test` (**14 cooked Unreal objects**). It confirms `WBP_GT_Test_C` directly extends **`WBP_GT_Settings_C`** (`/Game/Aperion/Blueprints/UI/WBP_GT_Settings`); its `GetCoherentUIGTWidget` function names an ancestor signature in **`WBP_GT_Base_C`** (`/Game/Aperion/Blueprints/UI/WBP_GT_Base`). The exact full parent chain must be confirmed by exporting `WBP_GT_Settings`.
+
+The Coherent child's `Outer` is **`WidgetTree'WBP_GT_Test_C:WidgetTree'`**, explaining the H39 `direct=0` result (the property is valid, but child is not directly outered to the host UObject). The export contains only a few host/layout/blur widgets and **no concrete cosmetics eligibility data or frontend URL**.
+
+**Next requested artifacts:** only the **FModel JSON exports** of `WBP_GT_Settings` and `WBP_GT_Base`. No H40 build until they reveal a testable new path. [FModel export analysis](docs/H39_FMODEL_WBP_GT_TEST_EXPORT.md).
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
