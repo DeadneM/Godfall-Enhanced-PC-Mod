@@ -1,7 +1,7 @@
 # H43: fix H42 early abort and try independent native cosmetic paths
 
 ## Actual H42 user test, 2026-10-14
-The user-provided `GodfallEnhancedBridge(20261014-172923).log` (14 lines / 1,174 bytes) shows `H42_BOOT_MARKER=OK`, followed by two identical `METHOD_C` commands. Both aborted at `H42_TARGET status=NO_MACROS_CLASS` and `H42_PRECHECK_FAIL reason=NO_VALID_MACROS_ASSET`. **No part of the four-path H42 runtime experiment executed**, and no crash was logged. The result does not invalidate H23/H25's separately proven material overrides.
+The user-provided `GodfallEnhancedBridge(20261014-172923).log` (16 lines / 1,174 bytes) shows `H42_BOOT_MARKER=OK`, followed by two identical `METHOD_C` commands. Both aborted at `H42_TARGET status=NO_MACROS_CLASS` and `H42_PRECHECK_FAIL reason=NO_VALID_MACROS_ASSET`. **No part of the four-path H42 runtime experiment executed**, and no crash was logged. The result does not invalidate H23/H25's separately proven material overrides.
 
 ### Engineering mistakes in H42
 1. A single `h42_target()` class load/lookup gate aborted the whole suite before `apply_macros()` ran, including a path already proven to work.
