@@ -268,11 +268,19 @@ The archive retains the H25 A/B material controls, F1, H35 offline locator and b
 
 **[Download H39 ZIP](releases/H39/GodfallEnhanced_V0.6H39_COHERENT_PERSISTENT_CHILD_F1_TEST.zip)** · [H39 test plan](docs/H39_COHERENT_CHILD_PROBE.md) · [H38 verified user result](docs/H38_RUNTIME_RESULT.md)
 
-H38 was tested in-game on 2026-10-14. It confirmed `WBP_GT_Test_C` becomes present when the vanilla Hinterclaw skins screen opens and has a `CoherentUIGTWidget_Persistent_90 : ObjectProperty` with a live Coherent child whose outer is the GT widget. Its only relevant host functions are `GetCoherentUIGTWidget` and `ToggleBgBlurWidget`. H38 yielded **no useful native cosmetics/ownership function or frontend URL**.
+H38 was tested in-game on 2026-10-14. It confirmed `WBP_GT_Test_C` becomes present when the vanilla Hinterclaw skins screen opens and has a `CoherentUIGTWidget_Persistent_90 : ObjectProperty` with a live Coherent child referenced by the host (H39 later shows its direct `GetOuter()` does not match that host). Its only relevant host functions are `GetCoherentUIGTWidget` and `ToggleBgBlurWidget`. H38 yielded **no useful native cosmetics/ownership function or frontend URL**.
 
 H39 follows the **specific child object** referenced by that property, not thousands of arbitrary Unreal objects. **F1 → C** first outside the original skins menu and again inside it reports direct child relationship, bounded inherited class metadata and any **sanitized URL/resource name**. It does not invoke the `GetCoherentUIGTWidget` method or call JS.
 
 The ZIP preserves the H25 visual A/B, F1 overlay, H35 offline locator, existing ASI/DXGI binaries and manually accessible previous probes. Integrity checked, but **H39 not yet tested in game**. No native skin unlock has been implemented. If this child only exposes generic Coherent plugin APIs, investigate FModel `WBP_GT_Test` / the actual UI data source instead of further class reflection.
+
+### H39 confirmed in-game, 2026-10-14
+
+**User log received and analyzed:** H39 boot marker verified, two read-only C tests completed, and the original skins-menu view again contained `WBP_GT_Test_C`. Its `CoherentUIGTWidget_Persistent_90` object property **resolves**, although `GetOuter()` is not directly the host UObject (`direct=0`).
+
+The targeted child exposes only generic Coherent GUI support: `Load`, `Reload`, `IsDocumentReady`, `OnUIGTScriptingReady` and delegates such as `ReadyForBindings` and `JavaScriptEvent`. **No URL, skin inventory, ownership check, cosmetic list or availability filter was recovered.** `H39_CHILD_PROBE_END status=completed mutated=0`, without logged fatal errors.
+
+**Decision:** Stop the H29–H39 class-reflection lineage; H40 is **not** justified as another reflection build. Next target: user’s **FModel JSON export of `WBP_GT_Test`** or actual discovered frontend JS/UI resources, to find the real original-menu cosmetics query. Do **not** modify the `BP_ValorplateAlcove` map or account entitlements merely because it omits the local `MacrosCosmetic` tag. [Detailed H39 in-game analysis](docs/H39_RUNTIME_RESULT.md).
 
 ## Installation
 
