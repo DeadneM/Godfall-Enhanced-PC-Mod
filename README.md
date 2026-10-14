@@ -338,6 +338,18 @@ A per-key `H44_TRIGGER` and per-native-call `H44_NATIVE_BEGIN` is written *befor
 
 The 13-entry ZIP has verified CRCs and preserves the H41 `GodfallEnhanced.asi`, `dxgi.dll`, H35 locator, and H25 A/B. Main unchanged, H44 not yet tested in-game.
 
+## H45: cooked Macros Blueprint and native tag compatibility repair (EXPERIMENTAL)
+
+**[Download H45 cumulative ZIP](releases/H45/GodfallEnhanced_V0.6H45_NATIVE_ASSET_TAG_F6_F9_TEST.zip)** · [H45 engineering notes and hazards](docs/H45_ASSET_TAG_REPAIR.md) · [H44 actual user log result](docs/H44_RUNTIME_RESULT.md)
+
+The **real 142-line H44 game log** validated F6 visual Macros twice and F10 restore once, but **F7/F8 never called their experimental native methods** because `BP_Hinterclaw_MacrosCosmetic_C` was not resolved; **F9 never called its native method** because global `FName` was absent in this UE4SS setup.
+
+H45 fixes both observed blockers while **retaining F6/F7/F8/F9 and F10 as separate opt-in hotkeys**. The Macros Blueprint path was independently verified by the user's cooked FModel export. UE4SS `StaticFindObject(string)` expects an unprefixed Unreal object path, not the `BlueprintGeneratedClass ` prefix incorrectly used in H44. H45 uses that documented form, short-name lookup and three FModel-grounded `LoadAsset` forms, and checks the true cooked CDO `GameplayTag`. **F9** uses the actual native CDO tag instead of constructing a tag through unavailable global `FName`. **F8** uses the validated CDO tag's native FName for the request ID; that could conflict with an existing request with the same name, so remains high risk and manual only.
+
+F7 and F8 also remain high native-risk operations: `TSoftClassPtr` map value and `FGameplayTagContainer` argument marshalling are not yet proven, and a `pcall` cannot contain a native C++ access violation. **Do not retest a crashing key**. F9 is the first separate trial worth considering because its documented Blueprint signature is two parameters (`FString`, `FGameplayTag`), but it can still fail or crash and is an **Alcove preview**, not a native owned skin.
+
+Archive verified (13 entries / CRCs); original H41/H44 `GodfallEnhanced.asi`, `dxgi.dll`, H35 locator, and H25 F1 A/B visual methods unchanged. No automatic native mutation on game start or F1 C. `main` unchanged. **H45 is published but not yet in-game validated; native Macros unlock is not achieved.**
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
