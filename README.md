@@ -337,6 +337,12 @@ The user specifically requested to stop the one-probe-per-build diagnostic loop 
 
 F1, H25 A/B, previous manual diagnostics, H35 asset locator and byte-for-byte original ASI/DXGI remain in the ZIP (13 entries, checked CRCs). **H42 is compiled/packaged and published but has not been run on the user's PC.** Native Unreal calls may crash: back up the existing installation. Do not publish as a stable release unless validated.
 
+### H43 CRASH CONFIRMED (2026-10-14): DO NOT INSTALL OR RETEST
+
+The H43 experimental user test ended in an Unreal **GameThread access violation** in `UE4SS +0x3E60BE` (minidump exception `0xC0000005`, read address `0xffffffffffffffff`, 52 seconds after boot). Multiple UE4SS stack frames repeat, indicating a likely native reflection/marshalling problem. There are no symbols or bridge stage log in the crash upload to unambiguously identify the offending H43 call. **The multi-experiment implementation is unsafe as written**. Lua `pcall` cannot safely contain native SEH crashes.
+
+**Roll back to H41 or H25**, keep the H43 archive for forensics only, and do not re-run its native `TMap:Add`, synthetic struct `AddCosmeticOverride` or `SetValorplateCosmetic` attempts. The latest crash context, INI and minidump were analyzed locally but **not uploaded**. See [H43 crash audit](docs/H43_CRASH_AUDIT.md). H44 is not built until an actual corrected and safer method is established.
+
 ## H43: repair H42 precheck and run multiple local cosmetic experiments
 
 **[Download H43 cumulative ZIP](releases/H43/GodfallEnhanced_V0.6H43_MULTIPATH_NONBLOCKING_F1_TEST.zip)** · [H43 technical notes and rollback limits](docs/H43_MULTIPATH_REPAIR.md)
