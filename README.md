@@ -337,6 +337,18 @@ The user specifically requested to stop the one-probe-per-build diagnostic loop 
 
 F1, H25 A/B, previous manual diagnostics, H35 asset locator and byte-for-byte original ASI/DXGI remain in the ZIP (13 entries, checked CRCs). **H42 is compiled/packaged and published but has not been run on the user's PC.** Native Unreal calls may crash: back up the existing installation. Do not publish as a stable release unless validated.
 
+## H43: repair H42 precheck and run multiple local cosmetic experiments
+
+**[Download H43 cumulative ZIP](releases/H43/GodfallEnhanced_V0.6H43_MULTIPATH_NONBLOCKING_F1_TEST.zip)** · [H43 technical notes and rollback limits](docs/H43_MULTIPATH_REPAIR.md)
+
+**H42 was not actually exercised.** The user's 16-line `GodfallEnhancedBridge(20261014-172923).log` showed `H42_TARGET status=NO_MACROS_CLASS` and `H42_PRECHECK_FAIL reason=NO_VALID_MACROS_ASSET` on **both** C presses. Its all-or-nothing check prevented even the already-validated H25 appearance method from running.
+
+**H43 now starts with H25's working appearance path**, regardless of whether the cooked Blueprint class is loaded. It then tries more exact `LoadAsset`/generated-class retrieval paths; the true Macros `GameplayTag`; temporary native Alcove map registration (only with actual Macros class, **no misleading Black skin fallback**); both local `APCosmeticsManager` and `APCosmeticsFunctionLibrary` override routes; and `SetValorplateCosmetic` for the Sanctum Alcove preview. The native calls are guarded and report separate failures, **not a guaranteed unlock**.
+
+Use **one F1 → C** on Hinterclaw in the Sanctum, then inspect the **original skin selection menu**. A second C **before leaving the Sanctum** attempts to undo map/override/material operations; some Alcove preview changes might require reloading the Sanctum. **Do not mistake a material-only appearance for native ownership.** Nothing writes inventory rewards, persistent account entitlements or saves; still, native UE4SS calls carry crash risk. Back up the prior mod.
+
+F1, unchanged H25 A/B, previous optional diagnostics, H35 offline locator and byte-identical original `GodfallEnhanced.asi`/`dxgi.dll` are preserved. The 13-entry release archive and ZIP CRCs were checked. **H43 is not yet verified in game.** `main` unchanged.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
