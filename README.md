@@ -304,6 +304,12 @@ This constitutes a **new, exact, testable hook target** after the inconclusive g
 
 The archive preserves H25 A/B materials, F1, previous manually accessible diagnostics, H35 offline locator, and byte-identical original ASI/DXGI binaries. Archive integrity/CRC checked on GitHub; **H40 not yet tested on the user's PC**. The native `MacrosCosmetic` unlock is still not implemented.
 
+### H40 actual user test (2026-10-14): hooks registered, run incomplete
+
+The received 16-line user log confirms `H40_BOOT_MARKER=OK`; first C was too early (`GT_TEST_NOT_LOADED`), but a second C **registered both BASE and SETTINGS hooks** (`H40_BRIDGE_ARMED hooks=2`). **No `H40_BRIDGE_TYPE` or `H40_BRIDGE_STOP` is in the file.** Neither a completed zero-event result, automatic cleanup, nor a game crash can be inferred. The inherited `H24_NO_HOOKS=TRUE` startup banner is stale when H40's optional hooks are active.
+
+**Next step:** determine if the game crashed after the second C. If so, roll back to H39 and do not repeat the hook test. If not, capture a complete manual start/stop test and supply the resulting log before the next restart. Do not broaden the hook scope or build H41 without this evidence. [Full H40 runtime result and source audit](docs/H40_RUNTIME_RESULT.md).
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
