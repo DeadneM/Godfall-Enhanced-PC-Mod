@@ -320,6 +320,24 @@ The user's follow-up H40 test on an armor with owned skins finally recorded real
 
 The install-ready ZIP retains F1, H25 A/B visual apply/restore, H35 offline locator and byte-for-byte original `GodfallEnhanced.asi` and `dxgi.dll`. All 13 ZIP entries and stored CRCs were checked; **H41 still needs in-game user testing**. Its existence is **not** evidence of a native `MacrosCosmetic` unlock.
 
+## H44: four separate hotkeys, no auto-chain (EXPERIMENTAL)
+
+**[Download H44 cumulative ZIP](releases/H44/GodfallEnhanced_V0.6H44_FOUR_INDEPENDENT_TRIGGERS_TEST.zip)** · [Complete key mapping, known hazards, rollback](docs/H44_FOUR_INDEPENDENT_TRIGGERS.md)
+
+**H43 CRASHED** in the user's GameThread (`UE4SS+0x3E60BE`). H44 was **rebuilt from H41**, not the crashing H43 native sequence. Instead of one Method C call chaining four dangerous operations, it registers **four independent keys**:
+
+- **F6:** the validated H25 visual Macros material swap only
+- **F7:** Hinterclaw Alcove `CosmeticTagToPlayerSkin` map insertion attempt only (high risk: Unreal `SoftClass` argument not validated)
+- **F8:** `APCosmeticsManager::AddCosmeticOverride` attempt only (high risk: native struct conversion not validated)
+- **F9:** `SetValorplateCosmetic` Alcove preview attempt only (high risk: native Blueprint argument types not validated)
+- **F10:** best-effort rollback of H44 map/override/material changes; no exact native Alcove preview undo exists
+
+**F1 C now displays help only**, and does not call native experimental operations. Original F1 A/B H25 material apply/restore still work. If keys are intercepted or unavailable, enter `H44_VISUAL`, `H44_MAP`, `H44_OVERRIDE`, `H44_PREVIEW`, or `H44_REVERT` in the existing `ue4ss/Mods/GodfallEnhancedBridge/bridge_command.txt`.
+
+A per-key `H44_TRIGGER` and per-native-call `H44_NATIVE_BEGIN` is written *before* executing the risky operation, so the latest log shows which key was active if a native crash happens. Each operation executes only when its own hotkey or explicit manual command is used, on the game thread. **Test F6 first and do not press F7/F8/F9 together**. `pcall` cannot prevent C++ access violations. If a key crashes the game, don't retry that key. H44 is **not a native unlock** and not a safe/stable release.
+
+The 13-entry ZIP has verified CRCs and preserves the H41 `GodfallEnhanced.asi`, `dxgi.dll`, H35 locator, and H25 A/B. Main unchanged, H44 not yet tested in-game.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
