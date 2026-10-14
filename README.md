@@ -264,6 +264,16 @@ The user's H37 log completed two sequential UI snapshots. **`WBP_GT_Test_C` was 
 
 The archive retains the H25 A/B material controls, F1, H35 offline locator and byte-identical `GodfallEnhanced.asi`/`dxgi.dll`. ZIP entries and CRCs were checked. **H38 has not yet been tested in game**. No `TMap` mutations, JS event injections, saves or server/account entitlement changes.
 
+## H39: Coherent persistent child audit (experimental)
+
+**[Download H39 ZIP](releases/H39/GodfallEnhanced_V0.6H39_COHERENT_PERSISTENT_CHILD_F1_TEST.zip)** · [H39 test plan](docs/H39_COHERENT_CHILD_PROBE.md) · [H38 verified user result](docs/H38_RUNTIME_RESULT.md)
+
+H38 was tested in-game on 2026-10-14. It confirmed `WBP_GT_Test_C` becomes present when the vanilla Hinterclaw skins screen opens and has a `CoherentUIGTWidget_Persistent_90 : ObjectProperty` with a live Coherent child whose outer is the GT widget. Its only relevant host functions are `GetCoherentUIGTWidget` and `ToggleBgBlurWidget`. H38 yielded **no useful native cosmetics/ownership function or frontend URL**.
+
+H39 follows the **specific child object** referenced by that property, not thousands of arbitrary Unreal objects. **F1 → C** first outside the original skins menu and again inside it reports direct child relationship, bounded inherited class metadata and any **sanitized URL/resource name**. It does not invoke the `GetCoherentUIGTWidget` method or call JS.
+
+The ZIP preserves the H25 visual A/B, F1 overlay, H35 offline locator, existing ASI/DXGI binaries and manually accessible previous probes. Integrity checked, but **H39 not yet tested in game**. No native skin unlock has been implemented. If this child only exposes generic Coherent plugin APIs, investigate FModel `WBP_GT_Test` / the actual UI data source instead of further class reflection.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
