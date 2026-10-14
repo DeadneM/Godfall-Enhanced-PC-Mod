@@ -290,6 +290,20 @@ The Coherent child's `Outer` is **`WidgetTree'WBP_GT_Test_C:WidgetTree'`**, expl
 
 **Next requested artifacts:** only the **FModel JSON exports** of `WBP_GT_Settings` and `WBP_GT_Base`. No H40 build until they reveal a testable new path. [FModel export analysis](docs/H39_FMODEL_WBP_GT_TEST_EXPORT.md).
 
+## H40: DataBridge request TYPE-only experiment (experimental)
+
+**[Download cumulative H40 ZIP](releases/H40/GodfallEnhanced_V0.6H40_DATABRIDGE_REQUEST_TYPE_F1_TEST.zip)** | [Exact FModel findings and risk controls](docs/H40_DATABRIDGE_TYPE_PROBE.md)
+
+Two FModel JSON exports supplied on 2026-10-14 resolved the full host inheritance: `WBP_GT_Test_C → WBP_GT_Settings_C → WBP_GT_Base_C → WBP_UserWidget_C`. `WBP_GT_Base_C` defines `OnDataBridgeIncomingRequest(Type: FString, Payload: JsonObjectWrapper, Promise: PromiseHandle)`, and `WBP_GT_Settings_C` overrides it to manage video/input settings. Base also exposes `CoherentUIGTInput`, `TargetURLReadyForBindings`, `IsTargetURLReadyForBindings`. **No file exposed cosmetic eligibility logic or entitlement checks.**
+
+This constitutes a **new, exact, testable hook target** after the inconclusive generic H29–H39 widget scans. H40 **F1 → C**, only after entering the original Hinterclaw skins UI, manually registers at most two exact UE4SS Blueprint UFunction hooks on the base/settings `OnDataBridgeIncomingRequest` methods, reading **only sanitized request `Type` names**, never payload, promise, account, URL or JS data. All callbacks return nil and original native behavior remains unchanged. Hooks automatically unregister after up to **48 matching calls or ~90 seconds**, or via second C.
+
+**Test:** back up H39, install H40 ZIP to the game EXE directory preserving `ue4ss/`, restart; enter the original Hinterclaw skins screen, press **F1 → C** once, close overlay and navigate three or four normal skins, then press **F1 → C** again. Send `GodfallEnhancedBridge.log` before restart. `H40_BRIDGE_HOOK_OK` and `H40_BRIDGE_TYPE` are the main observations.
+
+**Risk:** a narrowly scoped UFunction hook still has nonzero crash/compatibility risk on the user's UE4SS build (H20 broad hook tests previously crashed). If there is a crash, return to H39; do not repeatedly run a crashing path. An unavailable hook or zero events is useful negative evidence, **not proof no DataBridge requests exist**.
+
+The archive preserves H25 A/B materials, F1, previous manually accessible diagnostics, H35 offline locator, and byte-identical original ASI/DXGI binaries. Archive integrity/CRC checked on GitHub; **H40 not yet tested on the user's PC**. The native `MacrosCosmetic` unlock is still not implemented.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
