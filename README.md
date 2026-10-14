@@ -338,6 +338,14 @@ A per-key `H44_TRIGGER` and per-native-call `H44_NATIVE_BEGIN` is written *befor
 
 The 13-entry ZIP has verified CRCs and preserves the H41 `GodfallEnhanced.asi`, `dxgi.dll`, H35 locator, and H25 A/B. Main unchanged, H44 not yet tested in-game.
 
+### H45 CRASHED: DO NOT USE F7/F8 (2026-10-14)
+
+**The user confirmed both F7 and F8 cause native crashes; F9 does not produce the requested native cosmetic unlock. H45 is NOT recommended for installation or further testing.** Two runtime XML reports and two native minidumps show independent `0xC0000005` GameThread read access violations within UE4SS/native reflection execution. The precise offending API call is unproven without a same-session bridge log; one dump starts in `VCRUNTIME140`, the other in `UE4SS`. The suspected mismatch is `UClass` provided to `TSoftClassPtr` map values on F7 and synthetic tag-container/Object marshalling on F8. **These crash-causing calls are retired**, not merely postponed for retrial.
+
+**Return to the already tested [H41 ZIP](releases/H41/GodfallEnhanced_V0.6H41_SINGLE_DATABRIDGE_EVENT_TRACE_F1_TEST.zip) or H25 visual base.** Do not use H43/H45 experimental native mutation builds. F9 points at the **Sanctum Alcove preview**, not the original cosmetics ownership filter, and the user observed no result. The only demonstrated Macros feature remains a reversible *visual* material swap, not native ownership or a selectable skin.
+
+Read [H45 crash/minidump audit](docs/H45_CRASH_AUDIT.md). **No H46 build has been published**; future work must target actual original cosmetics UI ownership/filter data rather than adding more untyped native calls.
+
 ## H45: cooked Macros Blueprint and native tag compatibility repair (EXPERIMENTAL)
 
 **[Download H45 cumulative ZIP](releases/H45/GodfallEnhanced_V0.6H45_NATIVE_ASSET_TAG_F6_F9_TEST.zip)** · [H45 engineering notes and hazards](docs/H45_ASSET_TAG_REPAIR.md) · [H44 actual user log result](docs/H44_RUNTIME_RESULT.md)
