@@ -320,6 +320,23 @@ The user's follow-up H40 test on an armor with owned skins finally recorded real
 
 The install-ready ZIP retains F1, H25 A/B visual apply/restore, H35 offline locator and byte-for-byte original `GodfallEnhanced.asi` and `dxgi.dll`. All 13 ZIP entries and stored CRCs were checked; **H41 still needs in-game user testing**. Its existence is **not** evidence of a native `MacrosCosmetic` unlock.
 
+## H42: four local cosmetic attempts in one test (EXPERIMENTAL)
+
+**[Download H42 cumulative ZIP](releases/H42/GodfallEnhanced_V0.6H42_MULTIPATH_NATIVE_COSMETICS_F1_TEST.zip)** · [Exact experiments, safeguards and rollback limits](docs/H42_MULTIPATH_LOCAL_EXPERIMENT.md)
+
+The user specifically requested to stop the one-probe-per-build diagnostic loop and directly try multiple local cosmetic techniques. **H42 F1 → C** now runs four **independent guarded experiments in one game session**, after verifying the real cooked Macros class and gameplay tag plus a live Hinterclaw Alcove:
+
+1. **Known working H25 materials**, on the live Hinterclaw mesh.
+2. **Temporarily register Macros' real GameplayTag** in the placed Hinterclaw Alcove `CosmeticTagToPlayerSkin` map. Try the actual generated Macros class, or a *clearly labeled Black SoftClass fallback* solely to test UI inclusion.
+3. **Attempt a local APCosmeticsManager override** with the named request `GodfallEnhancedH42_LocalOnly`; errors are logged without silently claiming native unlock.
+4. **Attempt `BP_ValorplateAlcove:SetValorplateCosmetic`** on the Sanctum Alcove actor to test the *native preview/selection path* (does not imply owned skin).
+
+**Second F1 → C** attempts to remove the map entry, remove the manager request and restore the original H25 materials. **This is best-effort, not guaranteed complete**: the Alcove selection method has no proven inverse, and transitioning levels may invalidate actor references. Re-enter Sanctum if an Alcove preview stays altered. No loot grants, saved progression operations, account entitlements or backend spoofing; the project does **not** claim it can grant a real account-owned item.
+
+**One useful visual test:** equip Hinterclaw in loaded Sanctum, press F1 → C once, then inspect the **game's original Hinterclaw cosmetics screen**. Report whether Macros appears **as a selectable entry**, only visuals change, or nothing changes. A screenshot is preferred over yet another generic log. Press C again **before leaving Sanctum** for rollback.
+
+F1, H25 A/B, previous manual diagnostics, H35 asset locator and byte-for-byte original ASI/DXGI remain in the ZIP (13 entries, checked CRCs). **H42 is compiled/packaged and published but has not been run on the user's PC.** Native Unreal calls may crash: back up the existing installation. Do not publish as a stable release unless validated.
+
 ## Installation
 
 1. Open the Godfall executable directory, normally the directory containing `Aperion-Win64-Shipping.exe`.
